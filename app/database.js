@@ -56,6 +56,7 @@ var initialData = {
         {
           // The author of the comment.
           "author": 2,
+          // Like counter
           // The contents of the comment.
           "contents": "hope everything is ok!",
           // The date the comment was posted.
