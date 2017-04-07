@@ -1,7 +1,7 @@
 import React from 'react';
 import FeedItem from './feeditem';
 import StatusUpdateEntry from './statusupdateentry';
-import {getFeedData, postStatusUpdate} from '../server';
+import {getFeedData, postStatusUpdate, postComment} from '../server';
 
 export default class Feed extends React.Component {
   constructor(props) {
@@ -29,6 +29,16 @@ export default class Feed extends React.Component {
 
   componentDidMount() {
     this.refresh();
+  }
+
+  onCommentPost(postContents) {
+    // Send to server.
+    // We could use geolocation to get a location, but let's fix it to Amherst
+    // for now.
+    postComment(this.state._id, 4, postContents, () => {
+      // Database is now updated. Refresh the feed.
+      this.refresh();
+    });
   }
 
   render() {
